@@ -315,7 +315,7 @@ ListNode* recur_reverseList(ListNode* head, ListNode* prev = nullptr){
     return recur_reverseList(next, head );
 }
 
-ListNode* mergeTwolists(ListNode* l1, ListNode* l2){
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2){
     ListNode* dummy = new ListNode(0), *node = dummy;
     while(l1 && l2){
         if (l1->val <= l2->val){
@@ -331,7 +331,7 @@ ListNode* mergeTwolists(ListNode* l1, ListNode* l2){
     return dummy->next;
 }
 
-ListNode* recur_mergeTwolists(ListNode* l1, ListNode* l2){
+ListNode* recur_mergeTwoLists(ListNode* l1, ListNode* l2){
     //递归黑盒告诉我两个链表合并之后的头节点
     if(!l1){
         return l2;
@@ -341,10 +341,10 @@ ListNode* recur_mergeTwolists(ListNode* l1, ListNode* l2){
     }
     if(l1->val > l2->val)
     {
-        l2->next = recur_mergeTwolists(l1, l2->next);
+        l2->next = recur_mergeTwoLists(l1, l2->next);
         return l2;
     }
-    l1->next = recur_mergeTwolists(l1->next, l2);
+    l1->next = recur_mergeTwoLists(l1->next, l2);
     return l1;
 }
 
@@ -386,7 +386,7 @@ ListNode* recur_sortList(ListNode* head)
      ListNode* midnode = midNode(head);
      ListNode* rightNode = midnode->next;
      midnode->next = nullptr;
-     return mergeTwolists(recur_sortList(head), recur_sortList(rightNode));
+     return mergeTwoLists(recur_sortList(head), recur_sortList(rightNode));
 }
 
 ListNode* sortList(ListNode* head)
@@ -429,7 +429,7 @@ ListNode* sortList(ListNode* head)
                 curr->next = nullptr;
             }
 
-            ListNode* merged = mergeTwolists(head1, head2);
+            ListNode* merged = mergeTwoLists(head1, head2);
             prev->next = merged;
             while(prev->next)
             {
