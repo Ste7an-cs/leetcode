@@ -225,8 +225,46 @@ struct TreeNode{
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+//Trie tree
+class Trie {
+private:
+    vector<Trie*> children;
+    bool isEnd;
+    Trie* searchPrefix(const string& prefix) {
+        Trie* node = this;
+        for (char ch : prefix) {
+            ch -= 'a';
+            if (node->children[ch] == nullptr) {
+                return nullptr;
+            }
+            node = node->children[ch];
+        }
+        return node;
+    }
 
+public:
+    Trie() : children(26), isEnd(false) {}
+    void insert(const string& word) {
+        Trie* node = this;
+        for (char ch : word) {
+            ch -= 'a';
+            if (node->children[ch] == nullptr) {
+                node->children[ch] = new Trie();
+            }
+            node = node->children[ch];
+        }
+        node->isEnd = true;
+    }
 
+    bool search(const string& word) {
+        Trie* node = this->searchPrefix(word);
+        return node != nullptr && node->isEnd;
+    }
+
+    bool startsWith(const string& prefix) {
+        return this->searchPrefix(prefix) != nullptr;
+    }
+};
 
 
 //************************************linked List***************************************************
@@ -245,7 +283,7 @@ struct ListNode{
     ListNode* head2 = new ListNode(c);
     ListNode* head3 = new ListNode(d);
     ListNode* head4 = new ListNode(f);
-     ListNode* head5 = new ListNode(g);
+    ListNode* head5 = new ListNode(g);
     head->next = head1;
     head1->next = head2;
     head2->next = head3;
@@ -576,18 +614,21 @@ ListNode* swapPairs(ListNode* head)
 }
 
 int main(){
-    ListNode* head = listInit(1,2,3, 3, 2,1);
+
+
+//    ListNode* head = listInit(1,2,3, 3, 2,1);
+////    printList(head);
+////    head = reverseList_headInsert(head);
+////    ListNode* midnode = midNode(head);
 //    printList(head);
-//    head = reverseList_headInsert(head);
-//    ListNode* midnode = midNode(head);
-    printList(head);
-    head = swapPairs(head);
-//    printList(reversedMid);
-//    isPalindrome(head);
-//    head = deleteDuplicates(head);
-    printList(head);
+//    head = swapPairs(head);
+////    printList(reversedMid);
+////    isPalindrome(head);
+////    head = deleteDuplicates(head);
+//    printList(head);
 
-
+    Trie dict;
+    dict.insert("word");
 
 
 
