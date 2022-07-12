@@ -43,7 +43,7 @@ public:
             }
         }
     }
-    void removeInvalidParentheses(string s){
+    vector<string> removeInvalidParentheses(string s){
         int l = 0, r = 0;
         for(auto& c : s){
             if( c == '('){
