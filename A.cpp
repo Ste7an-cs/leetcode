@@ -5,15 +5,17 @@
 
 #include <iostream>
 #include "leetcode208.h"
+#include "leetcode671.h"
+#include "leetcode394.h"
 using namespace std;
 
 
 int main(){
-    Trie trie;
-    string word = "prefix";
-
-//    trie.insert(word);
-    char w = 'w';
-    char a = w - 'a';
-    cout << a;
+    MagicDictionary dict;
+    vector<string> words{"hello", "leetcode"};
+    string s = "3[a]2[bc]";
+    string ret = decodeString(s);
+    for(auto& c : ret){
+        cout<< c<<" " ;
+    }
 }

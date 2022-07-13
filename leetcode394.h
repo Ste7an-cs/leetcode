@@ -14,13 +14,13 @@
 
 using namespace std;
 
-string getDigits(string& s, int ptr){
+string getDigits(string& s, int& ptr){
     string ret;
     while(isdigit(s[ptr])) ret.push_back(s[ptr++]);
     return ret;
 }
 
-string getString(vector<string> str){
+string getString(vector<string>& str){
     string ret;
     for(auto& x : str){
         ret += x;
@@ -37,7 +37,7 @@ string decodeString(string s){
             string digits = getDigits(s, ptr);
             stk.push_back(digits);
         }else if(isalpha(ch) || ch == '['){
-            stk.push_back(string(1, ch));
+            stk.push_back(string(1, s[ptr++]));
         }else{
             ++ptr;
             vector<string> sub;
@@ -45,11 +45,12 @@ string decodeString(string s){
                 sub.push_back(stk.back());
                 stk.pop_back();
             }
+            reverse(sub.begin(), sub.end());
             stk.pop_back();
             int rept = stoi(stk.back());
+            stk.pop_back();
             string t, o =getString(sub);
             while(rept--)  t += o;
-            stk.pop_back();
             stk.push_back(t);
         }
 
