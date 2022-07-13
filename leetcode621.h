@@ -20,6 +20,10 @@ class Task{
 
         vector<int> nextValid, rest;
         int m = freq.size();
+        for(auto& [_,v] : freq){
+            nextValid.push_back(1);
+            rest.push_back(v);
+        }
         int time = 0;
         for(int i = 0; i < tasks.size(); i++ ){
             int minNextValid = INT_MAX;
