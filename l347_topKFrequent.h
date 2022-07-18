@@ -38,7 +38,7 @@ vector<int> topKFrequent(vector<int>& nums, int k){
         q.pop();
     }
     for(auto& x : ans){
-        cout << x <<"";
+        cout << x <<" ";
     }
     return ans;
 }
