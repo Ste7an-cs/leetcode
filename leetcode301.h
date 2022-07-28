@@ -34,7 +34,7 @@ public:
         }
         for(int i = start; i < str.size(); ++i){
             if(i != start && str[i] == str[i - 1]) continue;
-            if(l + r > str.size() - 1) return;
+            if(l + r > str.size() - i) return; //剩余的字符数 为 str.size() - i
             if(l > 0 && str[i] == '('){
                 dfs(i, l - 1, r, str.substr(0, i) + str.substr(i + 1));
             }
